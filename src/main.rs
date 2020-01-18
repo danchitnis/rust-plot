@@ -7,9 +7,33 @@ use web_view::*;
 
 
 fn main() {
+
+    let html = format!(r#"
+    <html>
+        <head>
+        </head>
+        <body>
+            <button class="button" onclick="external.invoke('red')">red</button>
+            <button class="button" onclick="external.invoke('green')">green</button>
+            <button class="button" onclick="external.invoke('blue')">blue</button>
+            <p id="info"></p>
+            <p id="float"></p>
+
+            <style>
+                {}
+            </style>
+
+            <script type="text/javascript">
+                {}
+            </script>
+        </body>
+        
+    </html>"#, include_str!("./style.css"), include_str!("./script.js"));
+
+
     web_view::builder()
         .title("Change background color")
-        .content(Content::Html(HTML))
+        .content(Content::Html(html))
         .size(400, 300)
         .resizable(true)
         .debug(true)
@@ -32,7 +56,7 @@ fn main() {
                     webview.eval(&format!("dostuff('{}')", str))?;
                 },
                 "blue" => {
-                    webview.eval(include_str!("./script.js"))?;
+                    //webview.eval(include_str!("./script.js"))?;
                 },
                 _ => ()
             }
@@ -68,7 +92,7 @@ fn float_to_char(num: f32) -> Vec<char> {
     return s.chars().collect()
 }
 
-const HTML: &str = r#"
+/*const HTML: &str = r#"
 <!DOCTYPE html>
 <html>
     <head>
@@ -87,4 +111,4 @@ const HTML: &str = r#"
     </body>
     
 </html>
-"#;
+"#;*/
