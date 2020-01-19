@@ -48,7 +48,7 @@ fn main() {
                 "green" => {
                     
                     //let a:f32 = 1.25;
-                    let array = vec![1.25f32, 0.0, 0.08, 5.0, 54.0, -100.1, -14.07];
+                    let array = vec![1.25f32, 0.0, 0.08, 5.0, 54.0, -100.1, -14.07, 1.047];
                     
                     
                     let str = float_to_str_array(&array);
@@ -56,7 +56,7 @@ fn main() {
                     webview.eval(&format!("dostuff('{}')", str))?;
                 },
                 "blue" => {
-                    //webview.eval(include_str!("./script.js"))?;
+                    webview.exit();
                 },
                 _ => ()
             }
@@ -92,23 +92,3 @@ fn float_to_char(num: f32) -> Vec<char> {
     return s.chars().collect()
 }
 
-/*const HTML: &str = r#"
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-	<body>
-		<button onclick="external.invoke('red')">red</button>
-        <button onclick="external.invoke('green')">green</button>
-        <button onclick="external.invoke('blue')">blue</button>
-        <p id="info"></p>
-        <p id="float"></p>
-
-        <script type="text/javascript">
-            console.log(window.location.href);
-            console.log("hi!");
-        </script>
-    </body>
-    
-</html>
-"#;*/
