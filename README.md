@@ -1,1 +1,1 @@
-# rust-webview-test
+# Rust plot using Webview

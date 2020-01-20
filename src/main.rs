@@ -28,7 +28,7 @@ fn main() {
             </script>
         </body>
         
-    </html>"#, include_str!("./style.css"), include_str!("./script.js"));
+    </html>"#, include_str!("./style.css"), include_str!("../dist/script.js"));
 
 
     web_view::builder()
