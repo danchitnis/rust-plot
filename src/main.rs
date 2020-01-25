@@ -18,6 +18,7 @@ fn main() {
             <button class="button" onclick="external.invoke('blue')">blue</button>
             <p id="info"></p>
             <p id="float"></p>
+            <div id="myDiv"></div>
 
             <style>
                 {}
@@ -26,10 +27,15 @@ fn main() {
             <script type="text/javascript">
                 {}
             </script>
+            
+            <script type="text/javascript">
+                {}                
+            </script>
         </body>
         
-    </html>"#, include_str!("./style.css"), include_str!("../dist/script.js"));
+    </html>"#, include_str!("./style.css"), include_str!("../dist/bundle.js"), r#"function comm(str){  EntryPoint.dostuff(str); }"#);
 
+    println!("{}", r#"function call(str){}"#);
 
     web_view::builder()
         .title("Change background color")
@@ -53,10 +59,11 @@ fn main() {
                     
                     let str = float_to_str_array(&array);
                     println!("{}", str);
-                    webview.eval(&format!("dostuff('{}')", str))?;
+                    webview.eval(&format!("comm('{}')", str))?;
                 },
                 "blue" => {
-                    webview.exit();
+                    webview.eval(&format!("EntryPoint.plot()"))?;
+                    //webview.exit();
                 },
                 _ => ()
             }

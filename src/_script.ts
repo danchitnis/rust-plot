@@ -1,9 +1,12 @@
 
-{
+import * as Plotly from "plotly.js";
 
+
+
+{
 const info = document.getElementById("info") as HTMLParagraphElement;
 const pFloat = document.getElementById("float") as HTMLParagraphElement;
-info.innerHTML = "Hi!🌮";
+//this.info.innerHTML = "Hi!🌮";
 
 function dostuff(str: string): void {
     
@@ -20,6 +23,26 @@ function dostuff(str: string): void {
     
 
 }
+
+/*function plot(): void {
+    
+    const trace1: Partial<Plotly.PlotData> = {
+        x: [1,2,3,4],
+        y: [10, 15, 13, 17],
+        type: 'scatter'
+    };
+
+      
+    const trace2 = {
+    x: [1, 2, 3, 4],
+    y: [16, 5, 11, 9],
+    type: 'scatter'
+    };
+      
+    const data = [trace1];
+      
+    Plotly.newPlot('myDiv', data);
+}*/
 
 function strToFloatarray(str: string): Float32Array {
     
@@ -54,4 +77,6 @@ function strToFloatarray(str: string): Float32Array {
 
 }
 
+
 }
+module.export = {}

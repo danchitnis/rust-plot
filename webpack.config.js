@@ -2,11 +2,13 @@ const path = require('path');
 
 module.exports = [
   {
-    entry: './dist/main.js',
-    mode: 'development',
+    entry: './dist/script.js',
+    mode: 'production',
     output: {
-      filename: 'index.js',
-      path: path.resolve(__dirname, 'dist')
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+      libraryTarget: 'var',
+      library: "EntryPoint",
     }
   }
 ];

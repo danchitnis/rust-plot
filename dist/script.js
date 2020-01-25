@@ -1,16 +1,39 @@
-{
+import Dygraph from "dygraphs";
+import {extra} from "./extra";
+
+
+
     const info = document.getElementById("info");
     const pFloat = document.getElementById("float");
     info.innerHTML = "Hi!🌮";
-    function dostuff(str) {
+
+    export function dostuff(str) {
         info.innerHTML = "";
         pFloat.innerHTML = "";
         const array = strToFloatarray(str);
         array.forEach(e => {
             pFloat.innerHTML = pFloat.innerHTML + e.toString() + "<br>";
         });
-        info.innerHTML = "Done!";
+        info.innerHTML = "do stuff Done!";
+        let e = new extra();
+        e.hello_extra();
+        //plot();
+
     }
+    export function plot() {
+        
+        const g = new Dygraph(document.getElementById("myDiv"),
+        [
+          [1,10,100],
+          [2,20,80],
+          [3,50,60],
+          [4,70,80]
+        ],
+        {
+          labels: [ "x", "A", "B" ]
+        });
+    }
+
     function strToFloatarray(str) {
         const arrayLength = Math.floor(str.length / 8);
         const array = new Float32Array(arrayLength);
@@ -34,5 +57,10 @@
         }
         return array;
     }
-}
-//# sourceMappingURL=script.js.map
+
+
+//export function dostuff;
+/*module.exports = {
+    dostuff: dostuff,
+    plot: plot,
+};*/

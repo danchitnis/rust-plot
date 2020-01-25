@@ -1,0 +1,24 @@
+<html>
+        <head>
+        </head>
+        <body>
+            <button class="button" onclick="external.invoke('red')">red</button>
+            <button class="button" onclick="external.invoke('green')">green</button>
+            <button class="button" onclick="external.invoke('blue')">blue</button>
+            <p id="info"></p>
+            <p id="float"></p>
+            <div id="myDiv"></div>
+
+            <link rel="stylesheet" type="text/css" href="./src/style.css">
+
+            <script type="text/javascript" src="dist/bundle.js"></script>
+            
+            <script type="text/javascript">
+                console.log(EntryPoint);
+                EntryPoint.dostuff("FFF02578");
+                EntryPoint.plot();
+            </script>
+           
+        </body>
+        
+    </html>
