@@ -7,30 +7,35 @@ import {extra} from "./extra";
     const pFloat = document.getElementById("float");
     info.innerHTML = "Hi!🌮";
 
+    let gArray = [];
+
     export function dostuff(str) {
         info.innerHTML = "";
         pFloat.innerHTML = "";
         const array = strToFloatarray(str);
         array.forEach(e => {
-            pFloat.innerHTML = pFloat.innerHTML + e.toString() + "<br>";
+            //pFloat.innerHTML = pFloat.innerHTML + e.toString() + "<br>";
         });
         info.innerHTML = "do stuff Done!";
         let e = new extra();
         e.hello_extra();
+
+        float_to_graph(array);
         //plot();
 
     }
+
+    function float_to_graph(array) {
+        gArray = [];
+        array.forEach( (e, i) => {
+            gArray.push([i,e]);
+        });
+    }
+
     export function plot() {
         
-        const g = new Dygraph(document.getElementById("myDiv"),
-        [
-          [1,10,100],
-          [2,20,80],
-          [3,50,60],
-          [4,70,80]
-        ],
-        {
-          labels: [ "x", "A", "B" ]
+        const g = new Dygraph(document.getElementById("myDiv"), gArray, {
+            labels: [ "x", "y" ]
         });
     }
 

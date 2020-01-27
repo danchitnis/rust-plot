@@ -1,7 +1,8 @@
 extern crate web_view;
-
+extern crate rand;
 
 use web_view::*;
+use rand::prelude::*;
 
 
 
@@ -16,9 +17,9 @@ fn main() {
             <button class="button" onclick="external.invoke('red')">red</button>
             <button class="button" onclick="external.invoke('green')">green</button>
             <button class="button" onclick="external.invoke('blue')">blue</button>
+            <div calss="canvas" id="myDiv"></div>
             <p id="info"></p>
             <p id="float"></p>
-            <div id="myDiv"></div>
 
             <style>
                 {}
@@ -54,7 +55,10 @@ fn main() {
                 "green" => {
                     
                     //let a:f32 = 1.25;
-                    let array = vec![1.25f32, 0.0, 0.08, 5.0, 54.0, -100.1, -14.07, 1.047];
+                    //let array = vec![1.25f32, 0.0, 0.08, 5.0, 54.0, -100.1, -14.07, 1.047];
+                    let mut array = vec![0f32; 1000];
+
+                    array_gen(&mut array);
                     
                     
                     let str = float_to_str_array(&array);
@@ -97,5 +101,15 @@ fn float_to_char(num: f32) -> Vec<char> {
     let s = String::from(&format!("{:02x}{:02x}{:02x}{:02x}", b[0], b[1], b[2], b[3]));
     println!("{:?}",s);
     return s.chars().collect()
+}
+
+fn array_gen(array: &mut Vec<f32>) {
+    
+    let mut rng = rand::thread_rng();
+
+    for e in array {
+        let r:f32 = rng.gen();
+        *e = r;
+    }
 }
 
