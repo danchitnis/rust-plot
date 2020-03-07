@@ -1,15 +1,12 @@
-extern crate web_view;
 extern crate rand;
+extern crate web_view;
 
-use web_view::*;
 use rand::prelude::*;
-
-
-
+use web_view::*;
 
 fn main() {
-
-    let html = format!(r#"
+    let html = format!(
+        r#"
     <html>
         <head>
         </head>
@@ -17,7 +14,7 @@ fn main() {
             <button class="button" onclick="external.invoke('red')">red</button>
             <button class="button" onclick="external.invoke('green')">green</button>
             <button class="button" onclick="external.invoke('blue')">blue</button>
-            <div calss="canvas" id="myDiv"></div>
+            <div class="canvas" id="myDiv"></div>
             <p id="info"></p>
             <p id="float"></p>
 
@@ -34,14 +31,18 @@ fn main() {
             </script>
         </body>
         
-    </html>"#, include_str!("./style.css"), include_str!("../dist/bundle.js"), r#"function comm(str){  EntryPoint.dostuff(str); }"#);
+    </html>"#,
+        include_str!("./style.css"),
+        include_str!("../dist/bundle.js"),
+        r#"function comm(str){  EntryPoint.dostuff(str); }"#
+    );
 
     println!("{}", r#"function call(str){}"#);
 
     web_view::builder()
         .title("Change background color")
         .content(Content::Html(html))
-        .size(400, 300)
+        .size(800, 400)
         .resizable(true)
         .debug(true)
         .user_data("")
@@ -53,23 +54,22 @@ fn main() {
                     webview.set_title("Hello!")?;
                 }
                 "green" => {
-                    
                     //let a:f32 = 1.25;
                     //let array = vec![1.25f32, 0.0, 0.08, 5.0, 54.0, -100.1, -14.07, 1.047];
-                    let mut array = vec![0f32; 1000];
+                    let mut array = vec![0f32; 100];
 
                     array_gen(&mut array);
-                    
-                    
                     let str = float_to_str_array(&array);
                     println!("{}", str);
                     webview.eval(&format!("comm('{}')", str))?;
-                },
+
+                    webview.eval(&format!("EntryPoint.plot()"))?;
+                }
                 "blue" => {
                     webview.eval(&format!("EntryPoint.plot()"))?;
                     //webview.exit();
-                },
-                _ => ()
+                }
+                _ => (),
             }
 
             Ok(())
@@ -79,9 +79,7 @@ fn main() {
 }
 
 fn float_to_str_array(array: &Vec<f32>) -> String {
-    
     let mut char_array = Vec::<char>::new();
-    
     for e in array {
         //let s = float_to_str(*e);
         let tmp = float_to_char(*e);
@@ -97,19 +95,16 @@ fn float_to_char(num: f32) -> Vec<char> {
     let b = num.to_be_bytes();
     println!("{:?}", b);
 
-    
     let s = String::from(&format!("{:02x}{:02x}{:02x}{:02x}", b[0], b[1], b[2], b[3]));
-    println!("{:?}",s);
-    return s.chars().collect()
+    println!("{:?}", s);
+    return s.chars().collect();
 }
 
 fn array_gen(array: &mut Vec<f32>) {
-    
     let mut rng = rand::thread_rng();
 
     for e in array {
-        let r:f32 = rng.gen();
+        let r: f32 = rng.gen();
         *e = r;
     }
 }
-
