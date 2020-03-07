@@ -11,7 +11,7 @@ export function dostuff(str) {
   pFloat.innerHTML = "";
   const array = strToFloatarray(str);
   array.forEach(e => {
-    pFloat.innerHTML = pFloat.innerHTML + e.toString() + "<br>";
+    //pFloat.innerHTML = pFloat.innerHTML + e.toString() + "<br>";
   });
   info.innerHTML = "do stuff Done!";
 
