@@ -10,7 +10,7 @@ export function dostuff(str) {
   info.innerHTML = "";
   pFloat.innerHTML = "";
   const array = strToFloatarray(str);
-  array.forEach(e => {
+  array.forEach((e) => {
     //pFloat.innerHTML = pFloat.innerHTML + e.toString() + "<br>";
   });
   info.innerHTML = "do stuff Done!";
@@ -28,7 +28,7 @@ function float_to_graph(array) {
 
 export function plot() {
   const g = new Dygraph(document.getElementById("myDiv"), gArray, {
-    labels: ["x", "y"]
+    labels: ["x", "y"],
   });
 }
 
