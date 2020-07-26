@@ -8,4 +8,4 @@ edition = "2018"
 
 [dependencies]
 rand = "0.7.3"
-web-view = { version = "=0.6.2", features = ["edge"] }
+web-view = { version = "=0.6.3", features = ["edge"] }
